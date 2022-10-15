@@ -20,7 +20,13 @@ pipeline {
         py.test --verbose --junit-xml test-reports/results.xml
         ''' 
       }
-    
+     stage ('test2') {
+      steps {
+        sh '''#!/bin/bash
+        'npm run cypress2:ci'
+        ''' 
+      }  
+       
       post{
         always {
           junit 'test-reports/results.xml'
